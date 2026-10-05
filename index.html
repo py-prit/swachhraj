@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F28C28">
+<title>SwachhRAJ · Clickable prototype</title>
+<meta name="description" content="SwachhRAJ, a cleanliness platform for Rajkot. Concept prototype by Zentech Solution for Rajkot Municipal Corporation.">
+<meta property="og:title" content="SwachhRAJ · Clickable prototype">
+<meta property="og:description" content="Citizen app, staff app, officer and corporator dashboards. Concept by Zentech Solution for Rajkot Municipal Corporation.">
+<meta property="og:image" content="https://py-prit.github.io/swachhraj/assets/og.png">
+<link rel="icon" href="assets/mark.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--surface:#F8F7F4;--raised:#FFFFFF;--line:#E3E0D8;--ink:#1A1D2B;--muted:#5B5F6E;--saffron:#F28C28;--saffron-strong:#B8500A;--saffron-soft:#FFF1E3;--green:#0E7A3B;--green-soft:#E4F4EA;--navy:#1E3A8A;--navy-soft:#E7EDFB}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--ink);font-family:"Hind Vadodara","Noto Sans Gujarati",system-ui,sans-serif;font-size:16px;line-height:1.5}
+.disp{font-family:"Baloo Bhai 2","Noto Sans Gujarati",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+.hero{background:var(--saffron);position:relative;overflow:hidden}
+.hero .route{position:absolute;right:-20px;top:0;width:520px;height:100%;opacity:.9}
+.hero .inner{position:relative;padding-block:40px 56px;display:flex;flex-direction:column;gap:14px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:44px;height:44px}
+.wm{font-family:"Baloo Bhai 2",sans-serif;font-weight:800;letter-spacing:-.01em}
+.wm b{color:#FFFFFF;font-weight:800}
+h1{margin:12px 0 0;font-size:clamp(44px,8vw,76px);line-height:.95}
+.tag{font-family:"Baloo Bhai 2",sans-serif;font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--navy)}
+.lead{max-width:560px;font-size:17px}
+.pill{align-self:flex-start;background:var(--ink);color:#FFFFFF;border-radius:999px;padding:4px 14px;font-size:13px;font-weight:600}
+main{padding-block:36px 48px;display:flex;flex-direction:column;gap:40px}
+h2{margin:0 0 4px;font-size:28px;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--raised);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);transition:transform .15s ease, box-shadow .15s ease}
+.card:hover,.card:focus-visible{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(26,29,43,.25);outline:none}
+.card:focus-visible{box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--navy)}
+.ic{width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center}
+.ic svg{width:26px;height:26px}
+.card h3{margin:0;font-family:"Baloo Bhai 2",sans-serif;font-size:22px;line-height:1.15}
+.card .en{color:var(--muted);font-size:14px;margin-top:-6px}
+.card p{margin:0;font-size:15px}
+.open{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--saffron-strong)}
+.kind{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.doc{display:flex;align-items:center;gap:12px;background:var(--raised);border:1px solid var(--line);border-radius:16px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.doc:hover{border-color:var(--saffron)}
+.doc .ic{width:42px;height:42px;background:var(--saffron-soft);color:var(--saffron-strong)}
+.doc b{display:block}.doc span{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:20px 36px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <svg class="route" viewBox="0 0 520 420" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+    <g fill="#FFFFFF"><circle cx="40" cy="300" r="4"/><circle cx="58" cy="300" r="4"/><circle cx="76" cy="300" r="4"/><circle cx="94" cy="300" r="4"/><circle cx="112" cy="300" r="4"/><circle cx="130" cy="300" r="4"/><circle cx="148" cy="300" r="4"/><circle cx="166" cy="300" r="4"/><circle cx="184" cy="300" r="4"/><circle cx="202" cy="300" r="4"/><circle cx="220" cy="300" r="4"/><circle cx="238" cy="300" r="4"/><circle cx="256" cy="300" r="4"/><circle cx="274" cy="300" r="4"/><circle cx="292" cy="300" r="4"/><circle cx="292" cy="282" r="4"/><circle cx="292" cy="264" r="4"/><circle cx="292" cy="246" r="4"/><circle cx="292" cy="228" r="4"/><circle cx="292" cy="210" r="4"/><circle cx="292" cy="192" r="4"/><circle cx="292" cy="174" r="4"/><circle cx="292" cy="156" r="4"/><circle cx="292" cy="138" r="4"/><circle cx="292" cy="120" r="4"/><circle cx="310" cy="120" r="4"/><circle cx="328" cy="120" r="4"/><circle cx="346" cy="120" r="4"/><circle cx="364" cy="120" r="4"/><circle cx="382" cy="120" r="4"/><circle cx="400" cy="120" r="4"/><circle cx="418" cy="120" r="4"/><circle cx="436" cy="120" r="4"/></g>
+    <circle cx="462" cy="120" r="12" fill="#0E7A3B"/>
+    <rect x="360" y="230" width="200" height="190" rx="40" fill="#1E3A8A"/>
+  </svg>
+  <div class="wrap inner">
+    <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#FFFFFF" d="M32 3C19.3 3 9 13 9 25.6 9 42 32 61 32 61s23-19 23-35.4C55 13 44.7 3 32 3z"/><circle cx="32" cy="25" r="14" fill="#F28C28"/><path fill="#FFFFFF" d="M24.5 32.5c0-9 5.8-14.8 15.8-14.8 0 9-5.8 14.8-15.8 14.8z"/></svg><span class="wm" style="font-size:24px">Swachh<b>RAJ</b></span></div>
+    <h1 class="wm">Swachh<b>RAJ</b></h1>
+    <div class="tag">SwachhRAJ, SwaRAJ</div>
+    <p class="lead">રાજકોટ માટે સ્વચ્છતા પ્લેટફોર્મ. નીચેના દરેક ભાગને ખોલો અને ફોન પર વાપરો.<br><span style="opacity:.85">A cleanliness platform for Rajkot. Open each part below and try it on your phone.</span></p>
+    <span class="pill">ક્લિકેબલ પ્રોટોટાઇપ · ડેમો ડેટા</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2 class="disp">પ્રોટોટાઇપ જુઓ</h2>
+    <p class="sub">Clickable prototype · every button works · all data is demo</p>
+    <div class="grid">
+      <a class="card" href="citizen.html">
+        <span class="kind">Phone app</span>
+        <span class="ic" style="background:var(--saffron-soft);color:var(--saffron-strong)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span>
+        <h3>નાગરિક એપ</h3><div class="en">Citizen app</div>
+        <p>લાઈવ કચરા ગાડી, એક ફોટાથી ફરિયાદ, ગુજરાતી અવાજ સહાયક, ડસ્ટબિન, લીડરબોર્ડ.</p>
+        <span class="open">ખોલો ›</span>
+      </a>
+      <a class="card" href="staff.html">
+        <span class="kind">Phone app</span>
+        <span class="ic" style="background:var(--green-soft);color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3>કર્મચારી એપ</h3><div class="en">Staff app</div>
+        <p>સેલ્ફીથી હાજરી, આજનાં કામ, કામનો પુરાવો, કચરો અલગ કર્યો કે નહીં, આભાર.</p>
+        <span class="open">ખોલો ›</span>
+      </a>
+      <a class="card" href="officer.html">
+        <span class="kind">Desktop dashboard</span>
+        <span class="ic" style="background:var(--navy-soft);color:var(--navy)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>
+        <h3>અધિકારી ડેશબોર્ડ</h3><div class="en">Officer dashboard</div>
+        <p>લાઈવ શહેર નકશો, મોડી ફરિયાદો, હાજરી, કોન્ટ્રાક્ટર રિપોર્ટ, સાદા શબ્દોમાં પૂછો.</p>
+        <span class="open">ખોલો ›</span>
+      </a>
+      <a class="card" href="corporator.html">
+        <span class="kind">Desktop dashboard</span>
+        <span class="ic" style="background:#FFF6D6;color:#8A5A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></svg></span>
+        <h3>કોર્પોરેટર ડેશબોર્ડ</h3><div class="en">Corporator dashboard</div>
+        <p>વોર્ડનું રિપોર્ટ કાર્ડ, 18 વોર્ડમાં ક્રમ, નાગરિકોનો આભાર, WhatsApp પ્રગતિ કાર્ડ.</p>
+        <span class="open">ખોલો ›</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="disp">દસ્તાવેજો</h2>
+    <p class="sub">Documents · PDF</p>
+    <div class="docs">
+      <a class="doc" href="pdf/SwachhRAJ-Overview-Gujarati.pdf"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div><b>ઝાંખી (ગુજરાતી)</b><span>અમે શું બનાવી રહ્યા છીએ · 7 પાનાં</span></div></a>
+      <a class="doc" href="pdf/SwachhRAJ-Overview-English.pdf"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div><b>Overview (English)</b><span>What we are building · 7 pages</span></div></a>
+      <a class="doc" href="pdf/SwachhRAJ-Features-Gujarati.pdf"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div><b>દરેક સુવિધા (ગુજરાતી)</b><span>36 સુવિધાઓ સરળ ભાષામાં · 12 પાનાં</span></div></a>
+      <a class="doc" href="pdf/SwachhRAJ-Features-English.pdf"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><div><b>Every feature (English)</b><span>36 features explained · 13 pages</span></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">રાજકોટ મહાનગરપાલિકા માટે Zentech Solution દ્વારા કન્સેપ્ટ પ્રસ્તાવ. પ્રોટોટાઇપમાંનાં તમામ નામ અને આંકડા ડેમો માટે છે.<br>Concept proposal by Zentech Solution for Rajkot Municipal Corporation. All names and figures in the prototype are demo data.</footer>
+</body>
+</html>

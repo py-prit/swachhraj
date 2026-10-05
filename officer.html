@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F28C28">
+<title>SwachhRAJ · Officer dashboard</title>
+<link rel="icon" href="assets/mark.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+body{margin:0;background:#F8F7F4}
+*{box-sizing:border-box}
+.page{min-height:100vh;background:#F8F7F4;color:#1A1D2B;font-family:"Hind Vadodara","Noto Sans Gujarati",system-ui,sans-serif;font-size:15px;line-height:1.45}
+.disp{font-family:"Baloo Bhai 2","Noto Sans Gujarati",sans-serif}
+.bar{background:#1E3A8A;color:#FFFFFF}
+.wrap{max-width:1440px;margin:0 auto;padding:0 28px}
+.topin{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:14px 0}
+.wm{font-family:"Baloo Bhai 2",sans-serif;font-weight:800;font-size:22px}
+.wm b{color:#FFC48A;font-weight:800}
+.pill{font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:1px 9px}
+.zbtn{height:36px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#FFFFFF;font:inherit;font-size:14px;font-weight:600;padding:0 14px;cursor:pointer}
+.zbtn.on{background:#F28C28;border-color:#F28C28;color:#1A1D2B}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:22px 0 18px}
+.kpi{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:2px}
+.kpi .v{font-family:"Baloo Bhai 2",sans-serif;font-size:34px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.muted{color:#5B5F6E;font-size:13px}
+.card{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:18px;padding:18px}
+.h{font-family:"Baloo Bhai 2",sans-serif;font-weight:700;font-size:19px;margin:0;line-height:1.2}
+.main{display:flex;flex-wrap:wrap;gap:18px;align-items:stretch}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.c-red{background:#FDECEC;color:#B91C1C}.c-saf{background:#FFF1E3;color:#B8500A}.c-grn{background:#E4F4EA;color:#0E7A3B}.c-navy{background:#E7EDFB;color:#1E3A8A}
+.row{display:flex;align-items:center;gap:10px}
+.lrow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #F1EEE7}
+.sbtn{height:34px;border-radius:10px;border:1px solid #1E3A8A;background:#FFFFFF;color:#1E3A8A;font:inherit;font-size:13px;font-weight:600;padding:0 12px;cursor:pointer}
+.sbtn.done{border-color:#0E7A3B;color:#0E7A3B;background:#E4F4EA}
+.ask{display:flex;gap:8px;border:2px solid #1E3A8A;border-radius:14px;padding:6px 6px 6px 12px;align-items:center}
+.ask input{flex:1;border:0;outline:none;font:inherit;font-size:15px;background:transparent;color:#1A1D2B;min-width:0}
+.askgo{height:40px;border-radius:10px;border:0;background:#1E3A8A;color:#FFFFFF;font:inherit;font-weight:600;padding:0 14px;cursor:pointer}
+.sug{border:1px solid #E3E0D8;background:#F8F7F4;border-radius:999px;font:inherit;font-size:13px;padding:6px 12px;cursor:pointer;color:#1A1D2B;text-align:left}
+.hb{display:grid;grid-template-columns:110px 1fr 46px;gap:10px;align-items:center;font-size:14px}
+.track{height:12px;border-radius:999px;background:#F1EEE7;overflow:hidden}.track i{display:block;height:100%;border-radius:999px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;color:#5B5F6E;font-weight:600;padding:8px 6px;border-bottom:1px solid #E3E0D8}
+td{padding:10px 6px;border-bottom:1px solid #F1EEE7;font-variant-numeric:tabular-nums}
+.pulse{animation:pl 1.6s ease-in-out infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.3}}
+.think{animation:pl 1s ease-in-out infinite}
+
+html,body{margin:0}</style>
+<script src="assets/petite-vue.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+<div class="page">
+<div class="bar"><div class="wrap topin">
+  <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><path fill="#FFFFFF" d="M32 3C19.3 3 9 13 9 25.6 9 42 32 61 32 61s23-19 23-35.4C55 13 44.7 3 32 3z"></path><circle cx="32" cy="25" r="14" fill="#F28C28"></circle><path fill="#FFFFFF" d="M24.5 32.5c0-9 5.8-14.8 15.8-14.8 0 9-5.8 14.8-15.8 14.8z"></path></svg>
+  <span class="wm">Swachh<b>RAJ</b></span>
+  <div style="display:flex;flex-direction:column;line-height:1.2"><b style="font-size:15px">{{s.title}}</b><span style="font-size:12px;opacity:.8">{{s.sub}}</span></div>
+  <span class="pill">{{s.demo}}</span>
+  <span style="flex:1"></span>
+  <button v-for="z in zones" :class="`zbtn ${z.cls}`" @click="z.pick">{{z.label}}</button>
+  <button class="zbtn" @click="toggleLang" aria-label="Change language">{{s.langLabel}}</button>
+</div></div>
+
+<div class="wrap" style="padding-bottom:40px">
+  <div class="row" style="margin-top:18px;gap:8px"><span class="pulse" style="width:10px;height:10px;border-radius:999px;background:#0E7A3B;display:inline-block"></span><span class="muted">{{s.liveAt}}</span></div>
+  <div class="kpis">
+    <div class="kpi"><span class="muted">{{s.kVans}}</span><span class="v" style="color:#1E3A8A">{{k.vans}}</span><span class="muted">{{s.kVansSub}}</span></div>
+    <div class="kpi"><span class="muted">{{s.kStaff}}</span><span class="v" style="color:#0E7A3B">{{k.staff}}</span><span class="muted">{{s.kStaffSub}}</span></div>
+    <div class="kpi"><span class="muted">{{s.kOpen}}</span><span class="v">{{k.open}}</span><span class="muted">{{s.kOpenSub}}</span></div>
+    <div class="kpi" style="border-color:#F5C6C6"><span class="muted">{{s.kLate}}</span><span class="v" style="color:#B91C1C">{{k.late}}</span><span class="muted">{{s.kLateSub}}</span></div>
+    <div class="kpi"><span class="muted">{{s.kFix}}</span><span class="v">{{k.fix}}</span><span class="muted">{{s.kFixSub}}</span></div>
+  </div>
+
+  <div class="main">
+    <div class="card" style="flex:999 1 620px;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <div class="row" style="justify-content:space-between;flex-wrap:wrap"><h2 class="h">{{s.mapTitle}}</h2>
+        <div class="row" style="gap:14px;flex-wrap:wrap" >
+          <span class="row muted" style="gap:6px"><span style="width:12px;height:12px;border-radius:999px;background:#F28C28;display:inline-block"></span>{{s.lgVan}}</span>
+          <span class="row muted" style="gap:6px"><span style="width:12px;height:12px;border-radius:999px;background:#0E7A3B;display:inline-block"></span>{{s.lgStaff}}</span>
+          <span class="row muted" style="gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#1E3A8A;display:inline-block"></span>{{s.lgOpen}}</span>
+          <span class="row muted" style="gap:6px"><span style="width:12px;height:12px;border-radius:3px;background:#B91C1C;display:inline-block"></span>{{s.lgLate}}</span>
+        </div>
+      </div>
+      <svg viewBox="0 0 760 440" width="100%" style="display:block;border-radius:14px;background:#EEF0EC" aria-label="Schematic live map of Rajkot">
+        <path d="M30 60 L300 40 L330 220 L290 410 L40 400 Z" :fill="zW" stroke="#FFFFFF" stroke-width="4"></path>
+        <path d="M300 40 L500 30 L520 230 L470 420 L290 410 L330 220 Z" :fill="zC" stroke="#FFFFFF" stroke-width="4"></path>
+        <path d="M500 30 L740 50 L730 400 L470 420 L520 230 Z" :fill="zE" stroke="#FFFFFF" stroke-width="4"></path>
+        <ellipse cx="400" cy="230" rx="300" ry="170" fill="none" stroke="#FFFFFF" stroke-width="10"></ellipse>
+        <g stroke="#FFFFFF" stroke-width="6"><path d="M60 230H740M400 30V420M150 90L650 380M150 380L650 90"></path></g>
+        <text x="120" y="80" font-size="15" font-weight="700" fill="#1E3A8A" font-family="Hind Vadodara, sans-serif">{{s.west}}</text>
+        <text x="365" y="70" font-size="15" font-weight="700" fill="#1E3A8A" font-family="Hind Vadodara, sans-serif">{{s.central}}</text>
+        <text x="610" y="80" font-size="15" font-weight="700" fill="#1E3A8A" font-family="Hind Vadodara, sans-serif">{{s.east}}</text>
+        <rect v-for="p in pins" :x="p.x" :y="p.y" width="12" height="12" rx="3" :fill="p.c" stroke="#FFFFFF" stroke-width="2"></rect>
+        <circle v-for="d in staffDots" :cx="d.x" :cy="d.y" r="4.5" fill="#0E7A3B" opacity=".85"></circle>
+        <g v-for="v in vans" :transform="v.tf"><circle r="11" fill="#F28C28" opacity=".25"></circle><circle r="7" fill="#F28C28" stroke="#FFFFFF" stroke-width="2"></circle></g>
+        <text x="740" y="430" text-anchor="end" font-size="11" fill="#5B5F6E" font-family="Hind Vadodara, sans-serif">{{s.schematic}}</text>
+      </svg>
+    </div>
+
+    <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:18px">
+      <div class="card">
+        <div class="row" style="justify-content:space-between"><h2 class="h">{{s.lateTitle}}</h2><span class="chip c-red">{{k.late}}</span></div>
+        <div v-for="l in late" class="lrow"><div><div style="font-weight:600">{{l.what}}</div><div class="muted">{{l.where}}</div></div><span class="chip c-red">{{l.over}}</span><button :class="`sbtn ${l.cls}`" @click="l.esc">{{l.btn}}</button></div>
+        
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px">
+        <div class="row"><span class="chip" style="background:#FFF6D6;color:#8A5A00">✦ AI</span><h2 class="h">{{s.askTitle}}</h2></div>
+        <div class="ask"><label for="askq" style="position:absolute;left:-9999px">{{s.askTitle}}</label><input id="askq" :value="askText" :placeholder="s.askPh" readonly="readonly"><button class="askgo" @click="askFirst">{{s.ask}}</button></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px"><button class="sug" @click="q1">{{s.q1}}</button><button class="sug" @click="q2">{{s.q2}}</button></div>
+        <template v-if="thinking"><div class="muted think">{{s.thinking}}</div></template>
+        <template v-if="answered">
+          <div style="font-weight:600">{{ansTitle}}</div>
+          <div v-for="a in ansRows" class="hb"><span>{{a.name}}</span><div class="track"><i :style="`width:${a.pct}%;background:${a.c}`"></i></div><b style="text-align:right">{{a.v}}</b></div>
+          <div class="muted">{{ansNote}}</div>
+        </template>
+      </div>
+    </div>
+  </div>
+
+  <div class="main" style="margin-top:18px">
+    <div class="card" style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <h2 class="h">{{s.attTitle}}</h2>
+      <div v-for="a in att" class="hb" style="grid-template-columns:120px 1fr 52px"><span>{{a.name}}</span><div class="track"><i :style="`width:${a.v}%;background:${a.c}`"></i></div><b style="text-align:right">{{a.v}}%</b></div>
+      <div class="muted">{{s.attNote}}</div>
+    </div>
+    <div class="card" style="flex:2 1 520px;min-width:0">
+      <h2 class="h" style="margin-bottom:8px">{{s.conTitle}}</h2>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>{{s.thAgency}}</th><th>{{s.thZone}}</th><th>{{s.thRoutes}}</th><th>{{s.thOnTime}}</th><th>{{s.thSolved}}</th><th>{{s.thGrade}}</th></tr></thead>
+        <tbody><tr v-for="c in cons"><td style="font-weight:600">{{c.name}}</td><td>{{c.zone}}</td><td>{{c.routes}}%</td><td>{{c.ontime}}%</td><td>{{c.solved}}%</td><td><span :class="`chip ${c.cls}`">{{c.grade}}</span></td></tr></tbody>
+      </table></div>
+    </div>
+    <div class="card" style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:10px">
+      <h2 class="h">{{s.ssTitle}}</h2>
+      <div class="row" style="gap:16px">
+        <svg width="112" height="112" viewBox="0 0 120 120" aria-label="Readiness 78 of 100"><circle cx="60" cy="60" r="50" fill="none" stroke="#F1EEE7" stroke-width="12"></circle><circle cx="60" cy="60" r="50" fill="none" stroke="#1E3A8A" stroke-width="12" stroke-linecap="round" stroke-dasharray="245 314" transform="rotate(-90 60 60)"></circle><text x="60" y="66" text-anchor="middle" font-size="30" font-weight="800" fill="#1A1D2B" font-family="Baloo Bhai 2, sans-serif">78</text></svg>
+        <div class="muted">{{s.ssSub}}</div>
+      </div>
+      <div v-for="x in ss" class="row" style="justify-content:space-between;border-bottom:1px solid #F1EEE7;padding:6px 0"><span>{{x.name}}</span><span :class="`chip ${x.cls}`">{{x.tag}}</span></div>
+    </div>
+  </div>
+  <div class="muted" style="margin-top:18px">{{s.footer}}</div>
+</div>
+</div>
+</div>
+<style>[v-cloak]{display:none}</style>
+<script>
+class DCLogic { constructor(props){ this.props = props || {}; this.state = {}; }
+  setState(p){ Object.assign(this.state, typeof p === 'function' ? p(this.state) : p); if (this.__render) this.__render(); }
+  forceUpdate(){ if (this.__render) this.__render(); } }
+
+
+var STR = {
+  title:['સ્વચ્છતા કમાન્ડ સેન્ટર','Cleanliness command centre'], sub:['રાજકોટ મહાનગરપાલિકા · અધિકારી ડેશબોર્ડ','Rajkot Municipal Corporation · Officer dashboard'], demo:['ડેમો ડેટા','Demo data'], langLabel:['ગુ | EN','EN | ગુ'],
+  all:['આખું શહેર','Whole city'], west:['વેસ્ટ ઝોન','West Zone'], central:['સેન્ટ્રલ ઝોન','Central Zone'], east:['ઈસ્ટ ઝોન','East Zone'],
+  liveAt:['લાઈવ · 5 ઓક્ટોબર 2026, સવારે 10:40','Live · 5 October 2026, 10:40 am'],
+  kVans:['રૂટ પર ગાડીઓ','Vans on route'], kVansSub:['કુલ ગાડીઓમાંથી','of total vans'], kStaff:['કર્મચારી હાજરી','Staff present'], kStaffSub:['આજે સવારે','this morning'],
+  kOpen:['ખુલ્લી ફરિયાદો','Open complaints'], kOpenSub:['ઉકેલ ચાલુ','being worked on'], kLate:['સમયમર્યાદા વટાવી','Past deadline'], kLateSub:['તરત ધ્યાન આપો','need attention now'], kFix:['સરેરાશ ઉકેલ સમય','Average fix time'], kFixSub:['છેલ્લા 7 દિવસ','last 7 days'],
+  mapTitle:['લાઈવ શહેર નકશો','Live city map'], lgVan:['કચરા ગાડી','Garbage van'], lgStaff:['ફરજ પર કર્મચારી','Staff on duty'], lgOpen:['ખુલ્લી ફરિયાદ','Open complaint'], lgLate:['મોડી ફરિયાદ','Late complaint'], schematic:['રેખાચિત્ર · ચોક્કસ નકશો નહીં','Schematic · not to scale'],
+  lateTitle:['મોડી ફરિયાદો','Late complaints'], escalate:['આગળ મોકલો','Escalate'], escalated:['મોકલાઈ ✓','Escalated ✓'],
+  askTitle:['સાદા શબ્દોમાં પૂછો','Ask in plain words'], askPh:['તમારો પ્રશ્ન લખો…','Type your question…'], ask:['પૂછો','Ask'],
+  q1:['આ અઠવાડિયે સૌથી વધુ મોડી ફરિયાદો કયા વોર્ડમાં?','Which wards had the most late complaints this week?'], q2:['કયા કોન્ટ્રાક્ટરના સૌથી વધુ રૂટ બાકી રહ્યા?','Which contractor missed the most routes?'], thinking:['AI જવાબ તૈયાર કરે છે…','AI is preparing the answer…'],
+  a1t:['મોડી ફરિયાદો, આ અઠવાડિયે','Late complaints, this week'], a1n:['વોર્ડ 3 માં શાક માર્કેટ વારંવાર હોટસ્પોટ છે. સવારે વધારાની ટીમ સૂચવાય છે.','Ward 3’s vegetable market is a repeat hotspot. An extra morning crew is suggested.'],
+  a2t:['બાકી રહેલા રૂટ, આ અઠવાડિયે','Routes missed, this week'], a2n:['એજન્સી B ના 19 રૂટ બાકી, મોટા ભાગે ઈસ્ટ ઝોનમાં રવિવારે.','Agency B missed 19 routes, mostly in East Zone on Sunday.'],
+  attTitle:['ઝોન મુજબ હાજરી','Attendance by zone'], attNote:['નાગરિકોને ફક્ત વોર્ડનો કુલ આંકડો દેખાય છે.','Citizens see ward totals only.'],
+  conTitle:['કોન્ટ્રાક્ટર રિપોર્ટ કાર્ડ, સપ્ટેમ્બર','Contractor report cards, September'], thAgency:['એજન્સી','Agency'], thZone:['ઝોન','Zone'], thRoutes:['રૂટ પૂરા','Routes covered'], thOnTime:['સમયસર','On time'], thSolved:['ફરિયાદ ઉકેલ','Complaints solved'], thGrade:['ગ્રેડ','Grade'],
+  ssTitle:['સ્વચ્છ સર્વેક્ષણ તૈયારી','Swachh Survekshan readiness'], ssSub:['રાષ્ટ્રીય સર્વેક્ષણના માપદંડો પર આજનો અંદાજિત સ્કોર','Today’s estimated score on the national ranking’s measures'],
+  strong:['મજબૂત','Strong'], fair:['ઠીક','Fair'], weak:['સુધારો જોઈએ','Needs work'],
+  footer:['Zentech Solution દ્વારા કન્સેપ્ટ પ્રોટોટાઇપ. તમામ આંકડા ડેમો માટે છે.','Concept prototype by Zentech Solution. All figures are demo data.']
+};
+var ZK = { all: { vans: '298/325', staff: '92%', open: 146, late: 8, fix: '6.2 h' }, west: { vans: '104/112', staff: '94%', open: 41, late: 2, fix: '5.4 h' }, central: { vans: '96/108', staff: '91%', open: 58, late: 4, fix: '6.8 h' }, east: { vans: '98/105', staff: '90%', open: 47, late: 2, fix: '6.1 h' } };
+var VANS = [[160,150,60,30,0.9,0],[200,300,70,40,0.7,2],[110,250,40,60,1.1,4],[250,200,30,50,0.8,1],[400,150,60,30,1.0,3],[380,320,50,40,0.75,5],[440,240,30,60,0.95,2.5],[350,250,40,30,1.2,1.5],[600,150,70,35,0.85,0.5],[620,300,60,40,1.05,3.5],[560,240,35,55,0.9,4.5],[680,220,30,50,0.7,2.2]];
+var STAFF = [[90,120],[140,330],[220,110],[260,360],[180,220],[340,120],[420,380],[460,140],[380,200],[560,110],[640,360],[700,140],[590,280],[520,350]];
+var PINS = [[120,180,'o'],[230,270,'l'],[180,360,'o'],[340,170,'o'],[420,300,'l'],[455,190,'o'],[365,370,'l'],[580,200,'o'],[660,260,'o'],[540,330,'l'],[700,330,'o'],[270,130,'o']];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { lang: 'gu', zone: 'all', t: 0, esc: {}, q: 0, thinking: false }; }
+  componentDidMount() { this.iv = setInterval(() => this.setState({ t: this.state.t + 0.02 }), 80); }
+  componentWillUnmount() { clearInterval(this.iv); (this.tm || []).forEach(clearTimeout); }
+  later(fn, ms) { this.tm = this.tm || []; this.tm.push(setTimeout(fn, ms)); }
+  renderVals() {
+    var L = this.state.lang === 'gu' ? 0 : 1, st = this.state, me = this;
+    var s = {}; Object.keys(STR).forEach(function (k) { s[k] = STR[k][L]; });
+    var T = function (gu, en) { return L === 0 ? gu : en; };
+    var zoneOf = function (x) { return x < 300 ? 'west' : (x < 500 ? 'central' : 'east'); };
+    var inZone = function (x) { return st.zone === 'all' || zoneOf(x) === st.zone; };
+    var vans = VANS.filter(function (v) { return inZone(v[0]); }).map(function (v) { var a = st.t * v[4] + v[5]; return { tf: 'translate(' + (v[0] + v[2] * Math.cos(a)).toFixed(1) + ' ' + (v[1] + v[3] * Math.sin(a)).toFixed(1) + ')' }; });
+    var staffDots = STAFF.filter(function (d) { return inZone(d[0]); }).map(function (d, i) { return { x: d[0] + Math.sin(st.t * 0.6 + i) * 4, y: d[1] + Math.cos(st.t * 0.5 + i) * 4 }; });
+    var pins = PINS.filter(function (p) { return inZone(p[0]); }).map(function (p) { return { x: p[0] - 6, y: p[1] - 6, c: p[2] === 'l' ? '#B91C1C' : '#1E3A8A' }; });
+    var zl = [['all', s.all], ['west', s.west], ['central', s.central], ['east', s.east]];
+    var zones = zl.map(function (z) { return { label: z[1], cls: st.zone === z[0] ? 'on' : '', pick: function () { me.setState({ zone: z[0] }); } }; });
+    var hl = function (z) { return st.zone === 'all' || st.zone === z ? '#E2E6DE' : '#F1F2EE'; };
+    var lateRaw = [
+      ['l1', T('ઊભરાતું ડસ્ટબિન','Overflowing bin'), T('વોર્ડ 3 · શાક માર્કેટ','Ward 3 · vegetable market'), T('+5 કલાક','+5 hrs')],
+      ['l2', T('કચરાનો ઢગલો','Garbage pile'), T('વોર્ડ 13 · ગોંડલ રોડ','Ward 13 · Gondal Road'), T('+3 કલાક','+3 hrs')],
+      ['l3', T('મૃત પ્રાણી','Dead animal'), T('વોર્ડ 9 · ગલી 2','Ward 9 · Lane 2'), T('+2 કલાક','+2 hrs')],
+      ['l4', T('ન વળાયેલી શેરી','Unswept street'), T('વોર્ડ 17 · સોસાયટી રોડ','Ward 17 · Society Road'), T('+1 કલાક','+1 hr')]
+    ];
+    var late = lateRaw.map(function (l) { var d = !!st.esc[l[0]]; return { what: l[1], where: l[2], over: l[3], btn: d ? s.escalated : s.escalate, cls: d ? 'done' : '', esc: function () { var e = Object.assign({}, st.esc); e[l[0]] = true; me.setState({ esc: e }); } }; });
+    var ask = function (n) { return function () { me.setState({ q: n, thinking: true }); me.later(function () { me.setState({ thinking: false }); }, 1100); }; };
+    var a1 = [[T('વોર્ડ 3','Ward 3'), 5], [T('વોર્ડ 13','Ward 13'), 4], [T('વોર્ડ 9','Ward 9'), 3], [T('વોર્ડ 17','Ward 17'), 2], [T('વોર્ડ 6','Ward 6'), 1]];
+    var a2 = [[T('એજન્સી B','Agency B'), 19], [T('એજન્સી C','Agency C'), 11], [T('એજન્સી A','Agency A'), 4]];
+    var rows = st.q === 2 ? a2 : a1, mx = Math.max.apply(null, rows.map(function (r) { return r[1]; }));
+    var ansRows = rows.map(function (r, i) { return { name: r[0], v: r[1], pct: Math.round(r[1] / mx * 100), c: i === 0 ? '#B91C1C' : '#1E3A8A' }; });
+    var att = [[s.west, 94, '#0E7A3B'], [s.central, 91, '#0E7A3B'], [s.east, 90, '#0E7A3B']].map(function (a) { return { name: a[0], v: a[1], c: a[2] }; });
+    var cons = [[T('એજન્સી A','Agency A'), s.west, 96, 94, 92, 'A', 'c-grn'], [T('એજન્સી C','Agency C'), s.central, 89, 86, 88, 'B', 'c-navy'], [T('એજન્સી B','Agency B'), s.east, 81, 78, 84, 'C', 'c-saf']].map(function (c) { return { name: c[0], zone: c[1], routes: c[2], ontime: c[3], solved: c[4], grade: c[5], cls: c[6] }; });
+    var ss = [[T('ફરિયાદ નિવારણ','Grievance redressal'), s.strong, 'c-grn'], [T('ઘરે ઘરેથી કચરો','Door-to-door collection'), s.strong, 'c-grn'], [T('કચરો અલગ કરવો','Source segregation'), s.fair, 'c-navy'], [T('નાગરિક પ્રતિસાદ','Citizen feedback'), s.weak, 'c-saf']].map(function (x) { return { name: x[0], tag: x[1], cls: x[2] }; });
+    return {
+      s: s, k: ZK[st.zone], zones: zones, toggleLang: function () { me.setState({ lang: st.lang === 'gu' ? 'en' : 'gu' }); },
+      vans: vans, staffDots: staffDots, pins: pins, zW: hl('west'), zC: hl('central'), zE: hl('east'),
+      late: late, q1: ask(1), q2: ask(2), askFirst: ask(st.q === 1 ? 2 : 1), askText: st.q === 2 ? s.q2 : (st.q === 1 ? s.q1 : ''),
+      thinking: st.thinking, answered: st.q > 0 && !st.thinking, ansTitle: st.q === 2 ? s.a2t : s.a1t, ansNote: st.q === 2 ? s.a2n : s.a1n, ansRows: ansRows,
+      att: att, cons: cons, ss: ss
+    };
+  }
+}
+
+
+(function(){ var c = new Component({}); var store = PetiteVue.reactive(c.renderVals());
+  c.__render = function(){ Object.assign(store, c.renderVals()); };
+  PetiteVue.createApp(store).mount('#app'); if (c.componentDidMount) c.componentDidMount(); })();
+</script>
+</body>
+</html>

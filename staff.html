@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F28C28">
+<title>SwachhRAJ · Staff app</title>
+<link rel="icon" href="assets/mark.svg">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+.app{width:390px;height:844px;position:relative;overflow:hidden;background:#F8F7F4;color:#1A1D2B;font-family:"Hind Vadodara","Noto Sans Gujarati",system-ui,sans-serif;font-size:16px;line-height:1.45;display:flex;flex-direction:column}
+.disp{font-family:"Baloo Bhai 2","Noto Sans Gujarati",sans-serif}
+.top{display:flex;align-items:center;gap:8px;padding:14px 16px 10px;background:#0E7A3B;color:#FFFFFF}
+.wm{font-family:"Baloo Bhai 2",sans-serif;font-weight:800;font-size:20px}
+.wm b{color:#FFD9B0;font-weight:800}
+.tag{font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:1px 8px}
+.langbtn{height:34px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:transparent;font:inherit;font-size:13px;font-weight:600;padding:0 10px;cursor:pointer;color:#FFFFFF}
+.scroll{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.card{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:18px;padding:16px}
+.muted{color:#5B5F6E;font-size:14px}
+.row{display:flex;align-items:center;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border-radius:16px;border:0;font:inherit;font-weight:700;font-size:18px;cursor:pointer;padding:0 16px}
+.btn.grn{background:#0E7A3B;color:#FFFFFF}.btn.pri{background:#F28C28;color:#1A1D2B}.btn.sec{background:#FFFFFF;color:#1A1D2B;border:1px solid #E3E0D8}.btn.red{background:#FFFFFF;color:#B91C1C;border:2px solid #B91C1C}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600}
+.c-grn{background:#E4F4EA;color:#0E7A3B}.c-saf{background:#FFF1E3;color:#B8500A}.c-navy{background:#E7EDFB;color:#1E3A8A}.c-red{background:#FDECEC;color:#B91C1C}
+.nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#FFFFFF;border-top:1px solid #E3E0D8;padding:6px 4px 14px}
+.navb{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;font:inherit;font-size:12px;font-weight:600;color:#5B5F6E;cursor:pointer;padding:6px 0;min-height:54px}
+.navb.on{color:#0E7A3B}
+.task{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F1EEE7}
+.house{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #F1EEE7}
+.tg{min-width:72px;height:44px;border-radius:12px;border:2px solid #E3E0D8;background:#FFFFFF;font:inherit;font-size:14px;font-weight:700;cursor:pointer;color:#5B5F6E}
+.tg.ok{border-color:#0E7A3B;background:#E4F4EA;color:#0E7A3B}.tg.mix{border-color:#F28C28;background:#FFF1E3;color:#B8500A}
+.scan{position:absolute;left:0;right:0;height:3px;background:#F28C28;box-shadow:0 0 14px 4px rgba(242,140,40,.6);animation:scan 1.4s ease-in-out infinite}
+@keyframes scan{0%{top:6%}50%{top:90%}100%{top:6%}}
+.pulse{animation:pl 1.6s ease-in-out infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.35}}
+
+
+html,body{margin:0;height:100%;background:#E9E6DF}
+.stage{min-height:100%;display:flex;align-items:center;justify-content:center;gap:48px;padding:24px;box-sizing:border-box;font-family:"Hind Vadodara",sans-serif;color:#1A1D2B}
+.frame{border-radius:44px;padding:10px;background:#1A1D2B;box-shadow:0 30px 60px -12px rgba(26,29,43,.45)}
+.frame .app{border-radius:34px}
+.side{max-width:300px;display:flex;flex-direction:column;gap:12px}
+.side a{color:#B8500A;font-weight:600;text-decoration:none}
+.side h1{font-family:"Baloo Bhai 2",sans-serif;font-size:30px;line-height:1.1;margin:0}
+.side p{margin:0;color:#5B5F6E}
+@media (max-width:820px){.side{display:none}}
+@media (max-width:500px){html,body{background:#F8F7F4}.stage{padding:0;display:block}.frame{padding:0;border-radius:0;box-shadow:none;background:none}
+ .frame .app{width:100vw!important;height:100vh!important;height:100dvh!important;border-radius:0}}
+.app .scroll svg{max-width:100%;height:auto}
+</style>
+<script src="assets/petite-vue.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+<div class="stage"><div class="side"><a href="./">‹ SwachhRAJ</a><h1>Staff app</h1>
+<p>Open this link on a phone to use it full screen. Everything is clickable; all data is demo.</p></div>
+<div class="frame"><div class="app">
+<div class="top">
+  <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><path fill="#FFFFFF" d="M32 3C19.3 3 9 13 9 25.6 9 42 32 61 32 61s23-19 23-35.4C55 13 44.7 3 32 3z"></path><circle cx="32" cy="25" r="14" fill="#F28C28"></circle><path fill="#FFFFFF" d="M24.5 32.5c0-9 5.8-14.8 15.8-14.8 0 9-5.8 14.8-15.8 14.8z"></path></svg>
+  <span class="wm">Swachh<b>RAJ</b></span><span class="tag">{{s.staff}}</span>
+  <span style="flex:1"></span>
+  <button class="langbtn" @click="toggleLang" aria-label="Change language">{{s.langLabel}}</button>
+</div>
+
+<template v-if="isToday">
+<div class="scroll">
+  <div><div class="muted">{{s.wardLine}}</div><h1 class="disp" style="margin:0;font-size:26px;font-weight:800;line-height:1.15">{{s.hello}}</h1></div>
+  <template v-if="notIn">
+    <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+      <div style="position:relative;width:200px;height:200px;border-radius:999px;background:#1A1D2B;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <svg width="200" height="200" viewBox="0 0 200 200" aria-label="Selfie camera"><circle cx="100" cy="82" r="34" fill="#C8A68A"></circle><path d="M40 190c6-40 30-62 60-62s54 22 60 62z" fill="#0E7A3B"></path><path d="M66 70c4-24 64-28 68 0-8-10-60-12-68 0z" fill="#3B2F2A"></path></svg>
+        <div style="position:absolute;inset:14px;border:3px dashed #F28C28;border-radius:999px"></div>
+        <template v-if="checking"><div class="scan"></div></template>
+      </div>
+      <div class="muted">{{s.selfieHint}}</div>
+      <button class="btn grn" @click="markIn" style="width:100%">{{checkLabel}}</button>
+    </div>
+  </template>
+  <template v-if="isIn">
+    <div class="card" style="background:#E4F4EA;border-color:transparent;display:flex;flex-direction:column;gap:6px">
+      <span class="chip c-grn" style="align-self:flex-start;background:#FFFFFF">✓ {{s.present}}</span>
+      <div class="disp" style="font-size:22px;font-weight:800;color:#0E7A3B">{{s.markedAt}}</div>
+      <div class="row muted" style="gap:6px"><span class="pulse" style="width:10px;height:10px;border-radius:999px;background:#0E7A3B;display:inline-block"></span>{{s.locOn}}</div>
+    </div>
+    <div class="grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+      <div class="card" style="padding:12px;text-align:center"><div class="disp" style="font-size:24px;font-weight:800">{{doneCount}}/6</div><div class="muted">{{s.tasksDone}}</div></div>
+      <div class="card" style="padding:12px;text-align:center"><div class="disp" style="font-size:24px;font-weight:800">{{markedCount}}</div><div class="muted">{{s.homesMarked}}</div></div>
+      <div class="card" style="padding:12px;text-align:center"><div class="disp" style="font-size:24px;font-weight:800;color:#B91C1C">12</div><div class="muted">{{s.thanks}}</div></div>
+    </div>
+    <button class="btn pri" @click="goTasks">{{s.seeTasks}}</button>
+    <button class="btn red" @click="endShift">{{s.endShift}}</button>
+  </template>
+  <template v-if="isOut">
+    <div class="card" style="display:flex;flex-direction:column;gap:8px">
+      <div class="disp" style="font-size:22px;font-weight:800">{{s.shiftEnded}}</div>
+      <div class="row muted" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#9AA0AE;display:inline-block"></span>{{s.locOff}}</div>
+      <div class="muted">{{s.privacy}}</div>
+    </div>
+  </template>
+</div>
+</template>
+
+<template v-if="isTasks">
+<div class="scroll">
+  <template v-if="taskList">
+    <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.todayTasks}}</h1>
+    <svg viewBox="0 0 358 150" width="358" height="150" style="display:block;border-radius:18px" aria-label="Today's route"><rect width="358" height="150" fill="#EEF0EC"></rect><g stroke="#FFFFFF" stroke-width="10"><path d="M0 50H358M0 110H358M70 0V150M180 0V150M290 0V150"></path></g><path d="M70 110H180V50H290" stroke="#0E7A3B" stroke-width="6" fill="none" stroke-linecap="round"></path><circle cx="150" cy="110" r="9" fill="#B91C1C" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="260" cy="50" r="9" fill="#B91C1C" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="70" cy="110" r="7" fill="#0E7A3B"></circle></svg>
+    <div class="card" style="padding:4px 16px">
+      <div v-for="k in tasks" class="task"><span :class="`chip ${k.cls}`" style="margin-top:2px">{{k.kind}}</span><div style="flex:1"><div style="font-weight:600">{{k.title}}</div><div class="muted">{{k.sub}}</div></div><template v-if="k.open"><button class="tg" @click="k.go" style="min-width:64px;border-color:#F28C28;color:#B8500A">{{s.openT}}</button></template><template v-if="k.isDone"><span class="chip c-grn">✓</span></template></div>
+      
+    </div>
+  </template>
+  <template v-if="taskDetail">
+    <button @click="backTasks" style="background:none;border:0;font:inherit;font-weight:600;color:#0E7A3B;cursor:pointer;align-self:flex-start;min-height:44px">‹ {{s.todayTasks}}</button>
+    <div class="card" style="display:flex;flex-direction:column;gap:10px">
+      <span class="chip c-red" style="align-self:flex-start">{{s.complaint}} RJ-24817</span>
+      <div class="disp" style="font-size:21px;font-weight:800;line-height:1.2">{{s.cTitle}}</div>
+      <div class="muted">{{s.cWhere}}</div>
+      <div style="position:relative;border-radius:14px;overflow:hidden;height:170px">
+        <template v-if="showBefore"><svg viewBox="0 0 326 170" width="326" height="170" style="display:block"><rect width="326" height="170" fill="#C9C2B4"></rect><rect y="112" width="326" height="58" fill="#9C9384"></rect><rect x="120" y="58" width="86" height="76" rx="6" fill="#2F6B4A"></rect><ellipse cx="140" cy="54" rx="24" ry="14" fill="#3B3F4A"></ellipse><ellipse cx="184" cy="50" rx="26" ry="15" fill="#2A2D36"></ellipse><ellipse cx="90" cy="134" rx="26" ry="14" fill="#3B3F4A"></ellipse><ellipse cx="236" cy="138" rx="30" ry="16" fill="#2A2D36"></ellipse></svg></template>
+        <template v-if="showAfter"><svg viewBox="0 0 326 170" width="326" height="170" style="display:block"><rect width="326" height="170" fill="#D3CDBF"></rect><rect y="112" width="326" height="58" fill="#ABA394"></rect><rect x="120" y="58" width="86" height="76" rx="6" fill="#2F6B4A"></rect><rect x="112" y="50" width="102" height="12" rx="4" fill="#245A3D"></rect></svg></template>
+        <template v-if="verifying"><div class="scan"></div></template>
+        <div style="position:absolute;left:10px;top:10px;background:rgba(26,29,43,.8);color:#FFFFFF;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600">{{photoTag}}</div>
+      </div>
+      <template v-if="needPhoto"><button class="btn pri" @click="takeAfter">{{s.takeAfter}}</button></template>
+      <template v-if="verifying"><div style="background:#FFF6D6;color:#8A5A00;border-radius:12px;padding:12px;font-weight:600">✦ {{s.aiChecking}}</div></template>
+      <template v-if="verified">
+        <div style="background:#FFF6D6;color:#8A5A00;border-radius:12px;padding:12px;font-weight:600">✦ {{s.aiOk}}</div>
+        <div style="background:#E4F4EA;color:#0E7A3B;border-radius:12px;padding:12px;font-weight:600">{{s.sentToCitizen}}</div>
+        <button class="btn grn" @click="backTasks">{{s.nextTask}}</button>
+      </template>
+    </div>
+  </template>
+</div>
+</template>
+
+<template v-if="isHomes">
+<div class="scroll">
+  <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.homesTitle}}</h1>
+  <div class="muted">{{s.homesSub}}</div>
+  <div class="card" style="padding:4px 16px">
+    <div v-for="h in houses" class="house"><div><div style="font-weight:600">{{h.name}}</div><div class="muted" style="font-size:12px">{{h.sub}}</div></div><button :class="`tg ${h.okCls}`" @click="h.ok">✓ {{s.sep}}</button><button :class="`tg ${h.mixCls}`" @click="h.mix">{{s.mixed}}</button></div>
+    
+  </div>
+</div>
+</template>
+
+<template v-if="isThanks">
+<div class="scroll">
+  <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.thanksTitle}}</h1>
+  <div class="card" style="background:#0E7A3B;border-color:#0E7A3B;color:#FFFFFF;display:flex;align-items:center;gap:14px">
+    <div class="disp" style="font-size:44px;font-weight:800;line-height:1">12</div><div>{{s.thanksMonth}}</div>
+  </div>
+  <div v-for="t in thanks" class="card" style="display:flex;flex-direction:column;gap:6px"><div class="row"><span style="color:#B91C1C;font-size:18px">♥</span><b style="flex:1">{{t.who}}</b><span class="muted" style="font-size:12px">{{t.when}}</span></div><div>{{t.text}}</div></div>
+  
+</div>
+</template>
+
+<nav class="nav">
+  <button :class="`navb ${nToday}`" @click="goToday"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>{{s.nToday}}</button>
+  <button :class="`navb ${nTasks}`" @click="goTasks"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"></path><path d="M9 3v15M15 6v15"></path></svg>{{s.nTasks}}</button>
+  <button :class="`navb ${nHomes}`" @click="goHomes"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path><path d="m9 14 2 2 4-4"></path></svg>{{s.nHomes}}</button>
+  <button :class="`navb ${nThanks}`" @click="goThanks"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"></path></svg>{{s.nThanks}}</button>
+</nav>
+</div></div></div>
+</div>
+<style>[v-cloak]{display:none}</style>
+<script>
+class DCLogic { constructor(props){ this.props = props || {}; this.state = {}; }
+  setState(p){ Object.assign(this.state, typeof p === 'function' ? p(this.state) : p); if (this.__render) this.__render(); }
+  forceUpdate(){ if (this.__render) this.__render(); } }
+
+
+var STR = {
+  staff:['કર્મચારી','Staff'], langLabel:['ગુ | EN','EN | ગુ'], wardLine:['વોર્ડ 7B · સફાઈ કામદાર · ડેમો','Ward 7B · Safai Kamdar · demo'], hello:['સુપ્રભાત, રમેશભાઈ','Good morning, Rameshbhai'],
+  selfieHint:['કામના સ્થળે ઊભા રહીને સેલ્ફી લો','Stand at your work spot and take a selfie'], checkIn:['સેલ્ફીથી હાજરી પૂરો','Mark attendance with selfie'], checking:['ચહેરો ચકાસાય છે…','Checking face…'],
+  present:['હાજર','Present'], markedAt:['સવારે 6:32, વોર્ડ 7B','6:32 am, Ward 7B'], locOn:['ફરજ ચાલુ · લોકેશન ચાલુ','On duty · location on'],
+  tasksDone:['કામ પૂરાં','tasks done'], homesMarked:['ઘરો નોંધ્યાં','homes marked'], thanks:['આભાર','thank-yous'],
+  seeTasks:['આજનાં કામ જુઓ','See today’s tasks'], endShift:['શિફ્ટ પૂરી કરો','End shift'], shiftEnded:['શિફ્ટ બપોરે 1:30 પૂરી','Shift ended 1:30 pm'], locOff:['લોકેશન બંધ','Location sharing off'],
+  privacy:['ફરજ પૂરી થતાં જ ટ્રેકિંગ બંધ થાય છે. કોઈ કેમેરા કે માઈક રેકોર્ડિંગ નહીં.','Tracking stops the moment the shift ends. No camera or microphone recording.'],
+  todayTasks:['આજનાં કામ','Today’s tasks'], openT:['ખોલો','Open'], complaint:['ફરિયાદ','Complaint'],
+  cTitle:['ઊભરાતું ડસ્ટબિન અને કચરાનો ઢગલો','Overflowing bin and garbage pile'], cWhere:['રૈયા રોડ, શાક માર્કેટ પાસે · 12 કલાકમાં','Raiya Road, near vegetable market · within 12 hrs'],
+  takeAfter:['સફાઈ પછીનો ફોટો પાડો','Take the “after” photo'], aiChecking:['AI ફોટો ચકાસે છે…','AI is checking the photo…'], aiOk:['AI ચકાસણી: તાજો ફોટો, એ જ જગ્યા. સમય 10:14 નોંધાયો.','AI check: fresh photo, same spot. Time 10:14 recorded.'],
+  sentToCitizen:['નાગરિકને ખાતરી માટે મોકલ્યું','Sent to the citizen to confirm'], nextTask:['આગળનું કામ','Next task'], before:['પહેલાં','Before'], after:['પછી · 10:14','After · 10:14'],
+  homesTitle:['કચરો અલગ કર્યો કે નહીં','Waste separated?'], homesSub:['દરેક ઘરે એક ટેપ. તેનાથી ઘરનો સ્કોર બને.','One tap at each home. It builds the household’s score.'], sep:['અલગ','Separated'], mixed:['મિશ્ર','Mixed'],
+  thanksTitle:['મળેલો આભાર','Thanks received'], thanksMonth:['આ મહિને નાગરિકો તરફથી આભાર','thank-yous from citizens this month'],
+  nToday:['આજે','Today'], nTasks:['કામ','Tasks'], nHomes:['ઘરો','Homes'], nThanks:['આભાર','Thanks']
+};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: 'gu', tab: 'today', duty: 'out0', detail: false, photo: 0, doneTask: false, marks: {} };
+  }
+  componentWillUnmount() { (this.tm || []).forEach(clearTimeout); }
+  later(fn, ms) { this.tm = this.tm || []; this.tm.push(setTimeout(fn, ms)); }
+  renderVals() {
+    var L = this.state.lang === 'gu' ? 0 : 1, st = this.state, me = this;
+    var s = {}; Object.keys(STR).forEach(function (k) { s[k] = STR[k][L]; });
+    var go = function (tab) { return function () { me.setState({ tab: tab, detail: false }); }; };
+    var T = function (gu, en) { return L === 0 ? gu : en; };
+    var tasks = [
+      { kind: T('રૂટ','Route'), cls: 'c-grn', title: T('ગલી 4 થી ગલી 6 સફાઈ','Sweep Lane 4 to Lane 6'), sub: T('સવારે 6:30–8:00','6:30–8:00 am'), open: false, isDone: true },
+      { kind: T('ફરિયાદ','Complaint'), cls: 'c-red', title: T('ઊભરાતું ડસ્ટબિન, રૈયા રોડ','Overflowing bin, Raiya Road'), sub: T('12 કલાકમાં · 3 નાગરિકોએ જાણ કરી','Within 12 hrs · 3 citizens reported'), open: !st.doneTask, isDone: st.doneTask, go: function () { me.setState({ detail: true, photo: 0 }); } },
+      { kind: T('રૂટ','Route'), cls: 'c-grn', title: T('ગલી 7 થી ગલી 9 સફાઈ','Sweep Lane 7 to Lane 9'), sub: T('સવારે 8:00–10:00','8:00–10:00 am'), open: false, isDone: false },
+      { kind: T('ફરિયાદ','Complaint'), cls: 'c-red', title: T('મંદિર પાસે કચરો','Litter near the temple'), sub: T('24 કલાકમાં','Within 24 hrs'), open: false, isDone: false }
+    ];
+    var hs = [['ઘર 12, ગલી 4','House 12, Lane 4'],['ઘર 14, ગલી 4','House 14, Lane 4'],['ઘર 16, ગલી 4','House 16, Lane 4'],['શ્રીજી એપાર્ટમેન્ટ','Shreeji Apartments'],['ઘર 3, ગલી 5','House 3, Lane 5'],['ઘર 5, ગલી 5','House 5, Lane 5']];
+    var houses = hs.map(function (h, i) { var m = st.marks[i]; var set = function (v) { return function () { var mk = Object.assign({}, st.marks); mk[i] = mk[i] === v ? undefined : v; me.setState({ marks: mk }); }; };
+      return { name: h[L], sub: i === 3 ? T('24 ઘરો','24 homes') : T('સવારે 7:1' + i, '7:1' + i + ' am'), okCls: m === 'ok' ? 'ok' : '', mixCls: m === 'mix' ? 'mix' : '', ok: set('ok'), mix: set('mix') }; });
+    var marked = Object.keys(st.marks).filter(function (k) { return st.marks[k]; }).length;
+    var thanks = [
+      { who: T('નિશા પટેલ','Nisha Patel'), when: T('2 કલાક પહેલાં','2 hours ago'), text: T('નવરાત્રિમાં અમારી શેરી ચોખ્ખી રાખવા બદલ આભાર.','Thank you for keeping our lane spotless during Navratri.') },
+      { who: T('રૈયા રોડ રહેવાસી મંડળ','Raiya Road Residents'), when: T('આજે','Today'), text: T('શાક માર્કેટ પાસેનો ઢગલો 6 કલાકમાં સાફ. સલામ.','The pile near the market was cleared in 6 hours. Salute.') },
+      { who: T('સેનિટરી ઇન્સ્પેક્ટર, વોર્ડ 7B','Sanitary Inspector, Ward 7B'), when: T('ગઈકાલે','Yesterday'), text: T('આ અઠવાડિયે 100% હાજરી. શાબાશ.','100% attendance this week. Well done.') }
+    ];
+    var tab = st.tab;
+    return {
+      s: s, toggleLang: function () { me.setState({ lang: st.lang === 'gu' ? 'en' : 'gu' }); },
+      isToday: tab === 'today', isTasks: tab === 'tasks', isHomes: tab === 'homes', isThanks: tab === 'thanks',
+      nToday: tab === 'today' ? 'on' : '', nTasks: tab === 'tasks' ? 'on' : '', nHomes: tab === 'homes' ? 'on' : '', nThanks: tab === 'thanks' ? 'on' : '',
+      goToday: go('today'), goTasks: go('tasks'), goHomes: go('homes'), goThanks: go('thanks'),
+      notIn: st.duty === 'out0' || st.duty === 'checking', checking: st.duty === 'checking', isIn: st.duty === 'in', isOut: st.duty === 'out',
+      checkLabel: st.duty === 'checking' ? s.checking : s.checkIn,
+      markIn: function () { if (st.duty !== 'out0') return; me.setState({ duty: 'checking' }); me.later(function () { me.setState({ duty: 'in' }); }, 1500); },
+      endShift: function () { me.setState({ duty: 'out' }); },
+      doneCount: st.doneTask ? 2 : 1, markedCount: marked, tasks: tasks, taskList: !st.detail, taskDetail: st.detail,
+      backTasks: function () { me.setState({ detail: false }); },
+      showBefore: st.photo === 0, showAfter: st.photo > 0, verifying: st.photo === 1, verified: st.photo === 2, needPhoto: st.photo === 0,
+      photoTag: st.photo === 0 ? s.before : s.after,
+      takeAfter: function () { me.setState({ photo: 1 }); me.later(function () { me.setState({ photo: 2, doneTask: true }); }, 1700); },
+      houses: houses, thanks: thanks
+    };
+  }
+}
+
+
+(function(){ var c = new Component({}); var store = PetiteVue.reactive(c.renderVals());
+  c.__render = function(){ Object.assign(store, c.renderVals()); };
+  PetiteVue.createApp(store).mount('#app'); if (c.componentDidMount) c.componentDidMount(); })();
+</script>
+</body>
+</html>
