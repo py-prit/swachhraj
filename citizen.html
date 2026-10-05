@@ -104,7 +104,7 @@ html,body{margin:0;height:100%;background:#E9E6DF}
 </div>
 
 <!-- HOME -->
-<template v-if="isHome">
+<div style="display:contents" v-if="isHome">
 <div class="scroll">
   <div>
     <div class="muted">{{s.ward}} · {{s.zone}}</div>
@@ -162,10 +162,10 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     <div class="muted">{{s.wallPreview}}</div>
   </button>
 </div>
-</template>
+</div>
 
 <!-- MAP -->
-<template v-if="isMap">
+<div style="display:contents" v-if="isMap">
 <div style="flex:1;position:relative;overflow:hidden">
   <svg viewBox="0 0 390 560" width="390" height="560" style="display:block;position:absolute;inset:0" aria-label="Map of your area">
     <rect width="390" height="560" fill="#EEF0EC"></rect>
@@ -197,13 +197,13 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     </div>
   </div>
 </div>
-</template>
+</div>
 
 <!-- REPORT -->
-<template v-if="isReport">
+<div style="display:contents" v-if="isReport">
 <div class="scroll">
   <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.reportTitle}}</h1>
-  <template v-if="rep0">
+  <div style="display:contents" v-if="rep0">
     <button @click="snap" style="border:2px dashed #F28C28;background:#FFF1E3;border-radius:20px;height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:inherit;cursor:pointer;color:#1A1D2B">
       <span style="width:84px;height:84px;border-radius:999px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1A1D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></span>
       <span class="disp" style="font-size:22px;font-weight:800">{{s.takePhoto}}</span>
@@ -211,14 +211,14 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     </button>
     <button class="btn sec" @click="openVoice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="13" rx="3"></rect><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path></svg>{{s.orSpeak}}</button>
     <div class="muted" style="text-align:center">{{s.typesHint}}</div>
-  </template>
-  <template v-if="repPhoto">
+  </div>
+  <div style="display:contents" v-if="repPhoto">
     <div style="position:relative;border-radius:20px;overflow:hidden;height:260px">
       <svg viewBox="0 0 358 260" width="358" height="260" style="display:block"><rect width="358" height="260" fill="#C9C2B4"></rect><rect y="170" width="358" height="90" fill="#9C9384"></rect><rect x="20" y="40" width="318" height="130" fill="#D9D1C1"></rect><rect x="132" y="92" width="96" height="104" rx="8" fill="#2F6B4A"></rect><rect x="124" y="82" width="112" height="16" rx="5" fill="#245A3D"></rect><ellipse cx="150" cy="80" rx="26" ry="16" fill="#3B3F4A"></ellipse><ellipse cx="196" cy="74" rx="30" ry="18" fill="#2A2D36"></ellipse><ellipse cx="104" cy="196" rx="30" ry="18" fill="#3B3F4A"></ellipse><ellipse cx="252" cy="200" rx="34" ry="19" fill="#2A2D36"></ellipse><ellipse cx="290" cy="214" rx="20" ry="12" fill="#6B5D4A"></ellipse><rect x="70" y="214" width="26" height="10" rx="3" fill="#E0B04A" transform="rotate(-12 83 219)"></rect></svg>
-      <template v-if="rep1"><div class="scan"></div><div style="position:absolute;left:12px;bottom:12px;background:rgba(26,29,43,.82);color:#FFFFFF;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600">{{s.aiChecking}}</div></template>
+      <div style="display:contents" v-if="rep1"><div class="scan"></div><div style="position:absolute;left:12px;bottom:12px;background:rgba(26,29,43,.82);color:#FFFFFF;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600">{{s.aiChecking}}</div></div>
     </div>
-  </template>
-  <template v-if="rep2">
+  </div>
+  <div style="display:contents" v-if="rep2">
     <div class="card" style="display:flex;flex-direction:column;gap:10px;border-color:#F6C445">
       <div class="row"><span class="chip" style="background:#FFF6D6;color:#8A5A00">✦ {{s.aiFound}}</span><span class="muted">{{s.confidence}}</span></div>
       <div class="disp" style="font-size:22px;font-weight:800;line-height:1.15">{{s.detected}}</div>
@@ -229,91 +229,91 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     </div>
     <button class="btn pri" @click="submit">{{s.submit}}</button>
     <button class="btn sec" @click="resetReport">{{s.retake}}</button>
-  </template>
-  <template v-if="rep3">
+  </div>
+  <div style="display:contents" v-if="rep3">
     <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:24px">
       <span style="width:72px;height:72px;border-radius:999px;background:#E4F4EA;color:#0E7A3B;display:flex;align-items:center;justify-content:center"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span>
       <div class="disp" style="font-size:22px;font-weight:800">{{s.submitted}}</div>
       <div class="muted">{{s.complaintNo}}</div>
       <button class="btn grn" @click="goTrack" style="width:100%">{{s.trackIt}}</button>
     </div>
-  </template>
+  </div>
 </div>
-</template>
+</div>
 
 <!-- TRACK -->
-<template v-if="isTrack">
+<div style="display:contents" v-if="isTrack">
 <div class="scroll">
   <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.myComplaints}}</h1>
   <div class="card" style="display:flex;flex-direction:column;gap:12px">
     <div class="row" style="justify-content:space-between"><div><div style="font-weight:700">{{s.detected}}</div><div class="muted">{{s.complaintNoShort}} · {{s.locationShort}}</div></div><span :class="`chip ${statusChip}`">{{statusText}}</span></div>
     <div class="tl">
-      <div v-for="st in steps" class="tli"><div style="display:flex;flex-direction:column;align-items:center"><span :class="`dot ${st.cls}`"><template v-if="st.done"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5"><path d="m5 12 5 5 9-10"></path></svg></template></span><template v-if="st.line"><span :class="`vline ${st.lcls}`"></span></template></div><div style="padding-bottom:10px"><div style="font-weight:600">{{st.label}}</div><div class="muted">{{st.time}}</div></div></div>
+      <div v-for="st in steps" class="tli"><div style="display:flex;flex-direction:column;align-items:center"><span :class="`dot ${st.cls}`"><div style="display:contents" v-if="st.done"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5"><path d="m5 12 5 5 9-10"></path></svg></div></span><div style="display:contents" v-if="st.line"><span :class="`vline ${st.lcls}`"></span></div></div><div style="padding-bottom:10px"><div style="font-weight:600">{{st.label}}</div><div class="muted">{{st.time}}</div></div></div>
       
     </div>
-    <template v-if="showVerify">
+    <div style="display:contents" v-if="showVerify">
       <div class="grid2">
         <div><div class="muted" style="margin-bottom:4px">{{s.before}}</div><svg viewBox="0 0 160 110" width="100%" style="display:block;border-radius:12px"><rect width="160" height="110" fill="#C9C2B4"></rect><rect y="72" width="160" height="38" fill="#9C9384"></rect><rect x="58" y="40" width="44" height="44" rx="4" fill="#2F6B4A"></rect><ellipse cx="66" cy="36" rx="13" ry="8" fill="#2A2D36"></ellipse><ellipse cx="90" cy="34" rx="14" ry="8" fill="#3B3F4A"></ellipse><ellipse cx="40" cy="86" rx="15" ry="8" fill="#3B3F4A"></ellipse><ellipse cx="118" cy="88" rx="16" ry="9" fill="#2A2D36"></ellipse></svg></div>
         <div><div class="muted" style="margin-bottom:4px">{{s.after}}</div><svg viewBox="0 0 160 110" width="100%" style="display:block;border-radius:12px"><rect width="160" height="110" fill="#D3CDBF"></rect><rect y="72" width="160" height="38" fill="#ABA394"></rect><rect x="58" y="40" width="44" height="44" rx="4" fill="#2F6B4A"></rect><rect x="54" y="35" width="52" height="8" rx="3" fill="#245A3D"></rect></svg></div>
       </div>
       <div style="background:#FFF6D6;color:#8A5A00;border-radius:12px;padding:10px;font-size:13px;font-weight:600">✦ {{s.aiVerified}}</div>
-      <template v-if="askConfirm">
+      <div style="display:contents" v-if="askConfirm">
         <div style="font-weight:700;font-size:17px" class="disp">{{s.isClean}}</div>
         <div class="grid2"><button class="btn grn" @click="confirmFix">{{s.yesClean}}</button><button class="btn sec" @click="reopen">{{s.noReopen}}</button></div>
-      </template>
-      <template v-if="confirmed">
+      </div>
+      <div style="display:contents" v-if="confirmed">
         <div style="background:#E4F4EA;color:#0E7A3B;border-radius:12px;padding:12px;font-weight:600">{{s.thanksConfirm}}</div>
         <button class="btn sec" @click="thankWorker">{{thankLabel}}</button>
-      </template>
-      <template v-if="reopened">
+      </div>
+      <div style="display:contents" v-if="reopened">
         <div style="background:#FDECEC;color:#B91C1C;border-radius:12px;padding:12px;font-weight:600">{{s.reopenedMsg}}</div>
-      </template>
-    </template>
+      </div>
+    </div>
   </div>
   <div class="card" style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:600">{{s.oldComplaint}}</div><div class="muted">{{s.oldDate}}</div></div><span class="chip c-grn">{{s.resolved}}</span></div>
 </div>
-</template>
+</div>
 
 <!-- MORE -->
-<template v-if="isMore">
+<div style="display:contents" v-if="isMore">
 <div class="scroll">
-  <template v-if="moreList">
+  <div style="display:contents" v-if="moreList">
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.more}}</h1>
     <div class="card" style="padding:4px 14px">
       <button v-for="m in moreItems" class="li" @click="m.go"><span :class="`ic ${m.cls}`"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path :d="m.path"></path></svg></span><div style="flex:1"><div style="font-weight:600">{{m.label}}</div><div class="muted">{{m.sub}}</div></div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B5F6E" stroke-width="2"><path d="m9 6 6 6-6 6"></path></svg></button>
       
     </div>
-  </template>
+  </div>
 
-  <template v-if="vBin">
+  <div style="display:contents" v-if="vBin">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.nearestBin}}</h1>
     <svg viewBox="0 0 358 240" width="358" height="240" style="display:block;border-radius:18px" aria-label="Nearest dustbins map"><rect width="358" height="240" fill="#EEF0EC"></rect><g stroke="#FFFFFF" stroke-width="12"><path d="M0 80H358M0 170H358M110 0V240M250 0V240"></path></g><path d="M170 200V170H250V95" stroke="#1E3A8A" stroke-width="4" fill="none" stroke-dasharray="2 7" stroke-linecap="round"></path><circle cx="170" cy="204" r="9" fill="#1E3A8A" stroke="#FFFFFF" stroke-width="3"></circle><g transform="translate(250 84)"><circle r="16" fill="#0E7A3B" stroke="#FFFFFF" stroke-width="3"></circle><path d="M-6 -4h12M-5 -4v10h10v-10" stroke="#FFFFFF" stroke-width="2" fill="none"></path></g><circle cx="60" cy="60" r="10" fill="#0E7A3B" opacity=".55"></circle><circle cx="320" cy="200" r="10" fill="#0E7A3B" opacity=".55"></circle></svg>
     <div class="card row"><div style="flex:1"><div style="font-weight:700">{{s.binName}}</div><div class="muted">{{s.binDist}}</div></div><span class="chip c-grn">{{s.binStatus}}</span></div>
     <button class="btn sec" @click="openRequest">{{s.binFull}}</button>
-  </template>
+  </div>
 
-  <template v-if="vRequest">
+  <div style="display:contents" v-if="vRequest">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.requestBin}}</h1>
-    <template v-if="reqForm">
+    <div style="display:contents" v-if="reqForm">
       <div class="seg">
         <button :class="`opt ${reqPublicCls}`" @click="pickPublic"><b>{{s.publicBin}}</b><div class="muted">{{s.publicBinSub}}</div></button>
         <button :class="`opt ${reqHomeCls}`" @click="pickHome"><b>{{s.homeBin}}</b><div class="muted">{{s.homeBinSub}}</div></button>
       </div>
       <div class="card row muted" style="gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>{{s.location}}</div>
       <button class="btn pri" @click="sendRequest">{{s.sendRequest}}</button>
-    </template>
-    <template v-if="reqSent">
+    </div>
+    <div style="display:contents" v-if="reqSent">
       <div class="card" style="display:flex;flex-direction:column;gap:10px">
         <span class="chip c-grn" style="align-self:flex-start">{{s.reqApproved}}</span>
         <div class="disp" style="font-size:20px;font-weight:800">{{reqTitle}}</div>
         <div class="muted">{{s.reqEta}}</div>
       </div>
-    </template>
-  </template>
+    </div>
+  </div>
 
-  <template v-if="vLeader">
+  <div style="display:contents" v-if="vLeader">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.leaderboard}}</h1>
     <div class="muted">{{s.leaderSub}}</div>
@@ -321,9 +321,9 @@ html,body{margin:0;height:100%;background:#E9E6DF}
       <div v-for="w in leaders" class="row" :style="`padding:10px 0;border-bottom:1px solid #F1EEE7;${w.rowStyle}`"><span class="disp" style="width:28px;font-weight:800;font-size:18px;color:#B8500A">{{w.rank}}</span><div style="flex:1;font-weight:600">{{w.name}}</div><div style="width:110px" class="bar"><i :style="`width:${w.score}%;background:${w.color}`"></i></div><b style="width:34px;text-align:right">{{w.score}}</b></div>
       
     </div>
-  </template>
+  </div>
 
-  <template v-if="vScore">
+  <div style="display:contents" v-if="vScore">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.myScore}}</h1>
     <div class="card" style="display:flex;align-items:center;gap:16px">
@@ -332,9 +332,9 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     </div>
     <div class="card" style="background:#FFF1E3;border-color:transparent"><b>{{s.futureReward}}</b><div class="muted">{{s.futureRewardSub}}</div></div>
     <button class="btn sec" @click="openSort">✦ {{s.sortHelper}}</button>
-  </template>
+  </div>
 
-  <template v-if="vSort">
+  <div style="display:contents" v-if="vSort">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.sortHelper}}</h1>
     <div style="position:relative;height:220px;border-radius:20px;background:#1A1D2B;display:flex;align-items:center;justify-content:center;overflow:hidden">
@@ -342,9 +342,9 @@ html,body{margin:0;height:100%;background:#E9E6DF}
       <div style="position:absolute;inset:18px;border:3px solid #F28C28;border-radius:14px"></div>
     </div>
     <div class="card" style="display:flex;flex-direction:column;gap:6px;border-color:#B91C1C"><span class="chip c-red" style="align-self:flex-start">✦ {{s.hazard}}</span><div class="disp" style="font-size:20px;font-weight:800">{{s.batteryLine}}</div><div class="muted">{{s.batteryHow}}</div></div>
-  </template>
+  </div>
 
-  <template v-if="vWall">
+  <div style="display:contents" v-if="vWall">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.wall}}</h1>
     <div v-for="p in posts" class="card post">
@@ -353,9 +353,9 @@ html,body{margin:0;height:100%;background:#E9E6DF}
         <button :class="`likebtn ${p.likeCls}`" @click="p.like" style="align-self:flex-start">♥ {{p.likes}}</button>
       </div>
     
-  </template>
+  </div>
 
-  <template v-if="vSbm">
+  <div style="display:contents" v-if="vSbm">
     <button class="back" @click="backMore">‹ {{s.more}}</button>
     <div style="border-radius:20px;overflow:hidden;background:#1E3A8A;color:#FFFFFF">
       <img src="assets/pm-photo.jpg" alt="Prime Minister Narendra Modi" style="width:100%;height:220px;object-fit:cover;object-position:50% 12%;display:block">
@@ -367,9 +367,9 @@ html,body{margin:0;height:100%;background:#E9E6DF}
       <div class="muted">{{driveCount}}</div>
       <button :class="`btn ${joinCls}`" @click="joinDrive">{{joinLabel}}</button>
     </div>
-  </template>
+  </div>
 </div>
-</template>
+</div>
 
 <nav class="nav">
   <button :class="`navb ${navHome}`" @click="goHome"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>{{s.navHome}}</button>
@@ -379,31 +379,31 @@ html,body{margin:0;height:100%;background:#E9E6DF}
   <button :class="`navb ${navMore}`" @click="goMore"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>{{s.navMore}}</button>
 </nav>
 
-<template v-if="showToast">
+<div style="display:contents" v-if="showToast">
   <div class="toast">
     <span style="width:38px;height:38px;border-radius:999px;background:#F28C28;display:flex;align-items:center;justify-content:center;flex:none;color:#1A1D2B"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></span>
     <div style="flex:1"><div style="font-weight:700">{{s.toastTitle}}</div><div style="font-size:12px;opacity:.8">{{s.toastSub}}</div></div>
     <button @click="dismissToast" aria-label="Dismiss" style="background:none;border:0;color:#FFFFFF;font-size:22px;cursor:pointer;width:36px;height:36px">×</button>
   </div>
-</template>
+</div>
 
-<template v-if="voiceOpen">
+<div style="display:contents" v-if="voiceOpen">
   <div class="scrim" @click="closeVoice"></div>
   <div class="sheet" style="display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center">
     <div class="row" style="width:100%;justify-content:space-between"><b>{{s.voiceTitle}}</b><button @click="closeVoice" aria-label="Close" style="background:none;border:0;font-size:24px;cursor:pointer;width:40px;height:40px;color:#1A1D2B">×</button></div>
-    <template v-if="voiceListening">
+    <div style="display:contents" v-if="voiceListening">
       <div class="wave"><i></i><i></i><i></i><i></i><i></i></div>
       <div class="muted">{{s.listening}}</div>
-    </template>
-    <template v-if="voiceHeard">
+    </div>
+    <div style="display:contents" v-if="voiceHeard">
       <div style="align-self:flex-end;background:#FFF1E3;border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:85%;text-align:left">મારા વિસ્તારમાં કચરા ગાડી ક્યારે આવશે?</div>
-    </template>
-    <template v-if="voiceAnswered">
+    </div>
+    <div style="display:contents" v-if="voiceAnswered">
       <div style="align-self:flex-start;background:#E7EDFB;color:#1E3A8A;border-radius:16px 16px 16px 4px;padding:10px 14px;max-width:85%;text-align:left;display:flex;gap:8px;align-items:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:3px"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg><span>{{voiceAnswer}}</span></div>
       <div class="muted" style="font-size:12px">{{s.bhashini}}</div>
-    </template>
+    </div>
   </div>
-</template>
+</div>
 
 </div></div></div>
 </div>
@@ -563,7 +563,7 @@ class Component extends DCLogic {
 }
 
 
-(function(){ var c = new Component({}); var store = PetiteVue.reactive(c.renderVals());
+(function(){ var c = new Component({}); window.__dc = c; var store = PetiteVue.reactive(c.renderVals());
   c.__render = function(){ Object.assign(store, c.renderVals()); };
   PetiteVue.createApp(store).mount('#app'); if (c.componentDidMount) c.componentDidMount(); })();
 </script>

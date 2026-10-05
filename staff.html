@@ -65,21 +65,21 @@ html,body{margin:0;height:100%;background:#E9E6DF}
   <button class="langbtn" @click="toggleLang" aria-label="Change language">{{s.langLabel}}</button>
 </div>
 
-<template v-if="isToday">
+<div style="display:contents" v-if="isToday">
 <div class="scroll">
   <div><div class="muted">{{s.wardLine}}</div><h1 class="disp" style="margin:0;font-size:26px;font-weight:800;line-height:1.15">{{s.hello}}</h1></div>
-  <template v-if="notIn">
+  <div style="display:contents" v-if="notIn">
     <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
       <div style="position:relative;width:200px;height:200px;border-radius:999px;background:#1A1D2B;display:flex;align-items:center;justify-content:center;overflow:hidden">
         <svg width="200" height="200" viewBox="0 0 200 200" aria-label="Selfie camera"><circle cx="100" cy="82" r="34" fill="#C8A68A"></circle><path d="M40 190c6-40 30-62 60-62s54 22 60 62z" fill="#0E7A3B"></path><path d="M66 70c4-24 64-28 68 0-8-10-60-12-68 0z" fill="#3B2F2A"></path></svg>
         <div style="position:absolute;inset:14px;border:3px dashed #F28C28;border-radius:999px"></div>
-        <template v-if="checking"><div class="scan"></div></template>
+        <div style="display:contents" v-if="checking"><div class="scan"></div></div>
       </div>
       <div class="muted">{{s.selfieHint}}</div>
       <button class="btn grn" @click="markIn" style="width:100%">{{checkLabel}}</button>
     </div>
-  </template>
-  <template v-if="isIn">
+  </div>
+  <div style="display:contents" v-if="isIn">
     <div class="card" style="background:#E4F4EA;border-color:transparent;display:flex;flex-direction:column;gap:6px">
       <span class="chip c-grn" style="align-self:flex-start;background:#FFFFFF">✓ {{s.present}}</span>
       <div class="disp" style="font-size:22px;font-weight:800;color:#0E7A3B">{{s.markedAt}}</div>
@@ -92,52 +92,52 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     </div>
     <button class="btn pri" @click="goTasks">{{s.seeTasks}}</button>
     <button class="btn red" @click="endShift">{{s.endShift}}</button>
-  </template>
-  <template v-if="isOut">
+  </div>
+  <div style="display:contents" v-if="isOut">
     <div class="card" style="display:flex;flex-direction:column;gap:8px">
       <div class="disp" style="font-size:22px;font-weight:800">{{s.shiftEnded}}</div>
       <div class="row muted" style="gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:#9AA0AE;display:inline-block"></span>{{s.locOff}}</div>
       <div class="muted">{{s.privacy}}</div>
     </div>
-  </template>
+  </div>
 </div>
-</template>
+</div>
 
-<template v-if="isTasks">
+<div style="display:contents" v-if="isTasks">
 <div class="scroll">
-  <template v-if="taskList">
+  <div style="display:contents" v-if="taskList">
     <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.todayTasks}}</h1>
     <svg viewBox="0 0 358 150" width="358" height="150" style="display:block;border-radius:18px" aria-label="Today's route"><rect width="358" height="150" fill="#EEF0EC"></rect><g stroke="#FFFFFF" stroke-width="10"><path d="M0 50H358M0 110H358M70 0V150M180 0V150M290 0V150"></path></g><path d="M70 110H180V50H290" stroke="#0E7A3B" stroke-width="6" fill="none" stroke-linecap="round"></path><circle cx="150" cy="110" r="9" fill="#B91C1C" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="260" cy="50" r="9" fill="#B91C1C" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="70" cy="110" r="7" fill="#0E7A3B"></circle></svg>
     <div class="card" style="padding:4px 16px">
-      <div v-for="k in tasks" class="task"><span :class="`chip ${k.cls}`" style="margin-top:2px">{{k.kind}}</span><div style="flex:1"><div style="font-weight:600">{{k.title}}</div><div class="muted">{{k.sub}}</div></div><template v-if="k.open"><button class="tg" @click="k.go" style="min-width:64px;border-color:#F28C28;color:#B8500A">{{s.openT}}</button></template><template v-if="k.isDone"><span class="chip c-grn">✓</span></template></div>
+      <div v-for="k in tasks" class="task"><span :class="`chip ${k.cls}`" style="margin-top:2px">{{k.kind}}</span><div style="flex:1"><div style="font-weight:600">{{k.title}}</div><div class="muted">{{k.sub}}</div></div><div style="display:contents" v-if="k.open"><button class="tg" @click="k.go" style="min-width:64px;border-color:#F28C28;color:#B8500A">{{s.openT}}</button></div><div style="display:contents" v-if="k.isDone"><span class="chip c-grn">✓</span></div></div>
       
     </div>
-  </template>
-  <template v-if="taskDetail">
+  </div>
+  <div style="display:contents" v-if="taskDetail">
     <button @click="backTasks" style="background:none;border:0;font:inherit;font-weight:600;color:#0E7A3B;cursor:pointer;align-self:flex-start;min-height:44px">‹ {{s.todayTasks}}</button>
     <div class="card" style="display:flex;flex-direction:column;gap:10px">
       <span class="chip c-red" style="align-self:flex-start">{{s.complaint}} RJ-24817</span>
       <div class="disp" style="font-size:21px;font-weight:800;line-height:1.2">{{s.cTitle}}</div>
       <div class="muted">{{s.cWhere}}</div>
       <div style="position:relative;border-radius:14px;overflow:hidden;height:170px">
-        <template v-if="showBefore"><svg viewBox="0 0 326 170" width="326" height="170" style="display:block"><rect width="326" height="170" fill="#C9C2B4"></rect><rect y="112" width="326" height="58" fill="#9C9384"></rect><rect x="120" y="58" width="86" height="76" rx="6" fill="#2F6B4A"></rect><ellipse cx="140" cy="54" rx="24" ry="14" fill="#3B3F4A"></ellipse><ellipse cx="184" cy="50" rx="26" ry="15" fill="#2A2D36"></ellipse><ellipse cx="90" cy="134" rx="26" ry="14" fill="#3B3F4A"></ellipse><ellipse cx="236" cy="138" rx="30" ry="16" fill="#2A2D36"></ellipse></svg></template>
-        <template v-if="showAfter"><svg viewBox="0 0 326 170" width="326" height="170" style="display:block"><rect width="326" height="170" fill="#D3CDBF"></rect><rect y="112" width="326" height="58" fill="#ABA394"></rect><rect x="120" y="58" width="86" height="76" rx="6" fill="#2F6B4A"></rect><rect x="112" y="50" width="102" height="12" rx="4" fill="#245A3D"></rect></svg></template>
-        <template v-if="verifying"><div class="scan"></div></template>
+        <div style="display:contents" v-if="showBefore"><svg viewBox="0 0 326 170" width="326" height="170" style="display:block"><rect width="326" height="170" fill="#C9C2B4"></rect><rect y="112" width="326" height="58" fill="#9C9384"></rect><rect x="120" y="58" width="86" height="76" rx="6" fill="#2F6B4A"></rect><ellipse cx="140" cy="54" rx="24" ry="14" fill="#3B3F4A"></ellipse><ellipse cx="184" cy="50" rx="26" ry="15" fill="#2A2D36"></ellipse><ellipse cx="90" cy="134" rx="26" ry="14" fill="#3B3F4A"></ellipse><ellipse cx="236" cy="138" rx="30" ry="16" fill="#2A2D36"></ellipse></svg></div>
+        <div style="display:contents" v-if="showAfter"><svg viewBox="0 0 326 170" width="326" height="170" style="display:block"><rect width="326" height="170" fill="#D3CDBF"></rect><rect y="112" width="326" height="58" fill="#ABA394"></rect><rect x="120" y="58" width="86" height="76" rx="6" fill="#2F6B4A"></rect><rect x="112" y="50" width="102" height="12" rx="4" fill="#245A3D"></rect></svg></div>
+        <div style="display:contents" v-if="verifying"><div class="scan"></div></div>
         <div style="position:absolute;left:10px;top:10px;background:rgba(26,29,43,.8);color:#FFFFFF;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600">{{photoTag}}</div>
       </div>
-      <template v-if="needPhoto"><button class="btn pri" @click="takeAfter">{{s.takeAfter}}</button></template>
-      <template v-if="verifying"><div style="background:#FFF6D6;color:#8A5A00;border-radius:12px;padding:12px;font-weight:600">✦ {{s.aiChecking}}</div></template>
-      <template v-if="verified">
+      <div style="display:contents" v-if="needPhoto"><button class="btn pri" @click="takeAfter">{{s.takeAfter}}</button></div>
+      <div style="display:contents" v-if="verifying"><div style="background:#FFF6D6;color:#8A5A00;border-radius:12px;padding:12px;font-weight:600">✦ {{s.aiChecking}}</div></div>
+      <div style="display:contents" v-if="verified">
         <div style="background:#FFF6D6;color:#8A5A00;border-radius:12px;padding:12px;font-weight:600">✦ {{s.aiOk}}</div>
         <div style="background:#E4F4EA;color:#0E7A3B;border-radius:12px;padding:12px;font-weight:600">{{s.sentToCitizen}}</div>
         <button class="btn grn" @click="backTasks">{{s.nextTask}}</button>
-      </template>
+      </div>
     </div>
-  </template>
+  </div>
 </div>
-</template>
+</div>
 
-<template v-if="isHomes">
+<div style="display:contents" v-if="isHomes">
 <div class="scroll">
   <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.homesTitle}}</h1>
   <div class="muted">{{s.homesSub}}</div>
@@ -146,9 +146,9 @@ html,body{margin:0;height:100%;background:#E9E6DF}
     
   </div>
 </div>
-</template>
+</div>
 
-<template v-if="isThanks">
+<div style="display:contents" v-if="isThanks">
 <div class="scroll">
   <h1 class="disp" style="margin:0;font-size:24px;font-weight:800">{{s.thanksTitle}}</h1>
   <div class="card" style="background:#0E7A3B;border-color:#0E7A3B;color:#FFFFFF;display:flex;align-items:center;gap:14px">
@@ -157,7 +157,7 @@ html,body{margin:0;height:100%;background:#E9E6DF}
   <div v-for="t in thanks" class="card" style="display:flex;flex-direction:column;gap:6px"><div class="row"><span style="color:#B91C1C;font-size:18px">♥</span><b style="flex:1">{{t.who}}</b><span class="muted" style="font-size:12px">{{t.when}}</span></div><div>{{t.text}}</div></div>
   
 </div>
-</template>
+</div>
 
 <nav class="nav">
   <button :class="`navb ${nToday}`" @click="goToday"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>{{s.nToday}}</button>
@@ -237,7 +237,7 @@ class Component extends DCLogic {
 }
 
 
-(function(){ var c = new Component({}); var store = PetiteVue.reactive(c.renderVals());
+(function(){ var c = new Component({}); window.__dc = c; var store = PetiteVue.reactive(c.renderVals());
   c.__render = function(){ Object.assign(store, c.renderVals()); };
   PetiteVue.createApp(store).mount('#app'); if (c.componentDidMount) c.componentDidMount(); })();
 </script>

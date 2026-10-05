@@ -108,12 +108,12 @@ html,body{margin:0}</style>
         <div class="row"><span class="chip" style="background:#FFF6D6;color:#8A5A00">✦ AI</span><h2 class="h">{{s.askTitle}}</h2></div>
         <div class="ask"><label for="askq" style="position:absolute;left:-9999px">{{s.askTitle}}</label><input id="askq" :value="askText" :placeholder="s.askPh" readonly="readonly"><button class="askgo" @click="askFirst">{{s.ask}}</button></div>
         <div style="display:flex;flex-wrap:wrap;gap:8px"><button class="sug" @click="q1">{{s.q1}}</button><button class="sug" @click="q2">{{s.q2}}</button></div>
-        <template v-if="thinking"><div class="muted think">{{s.thinking}}</div></template>
-        <template v-if="answered">
+        <div style="display:contents" v-if="thinking"><div class="muted think">{{s.thinking}}</div></div>
+        <div style="display:contents" v-if="answered">
           <div style="font-weight:600">{{ansTitle}}</div>
           <div v-for="a in ansRows" class="hb"><span>{{a.name}}</span><div class="track"><i :style="`width:${a.pct}%;background:${a.c}`"></i></div><b style="text-align:right">{{a.v}}</b></div>
           <div class="muted">{{ansNote}}</div>
-        </template>
+        </div>
       </div>
     </div>
   </div>
@@ -216,7 +216,7 @@ class Component extends DCLogic {
 }
 
 
-(function(){ var c = new Component({}); var store = PetiteVue.reactive(c.renderVals());
+(function(){ var c = new Component({}); window.__dc = c; var store = PetiteVue.reactive(c.renderVals());
   c.__render = function(){ Object.assign(store, c.renderVals()); };
   PetiteVue.createApp(store).mount('#app'); if (c.componentDidMount) c.componentDidMount(); })();
 </script>

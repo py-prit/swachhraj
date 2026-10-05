@@ -123,7 +123,7 @@ html,body{margin:0}</style>
   </div>
   <div class="muted" style="margin-top:18px">{{s.footer}}</div>
 </div>
-<template v-if="shared"><div class="toast">{{s.sharedMsg}}</div></template>
+<div style="display:contents" v-if="shared"><div class="toast">{{s.sharedMsg}}</div></div>
 </div>
 </div>
 <style>[v-cloak]{display:none}</style>
@@ -179,7 +179,7 @@ class Component extends DCLogic {
 }
 
 
-(function(){ var c = new Component({}); var store = PetiteVue.reactive(c.renderVals());
+(function(){ var c = new Component({}); window.__dc = c; var store = PetiteVue.reactive(c.renderVals());
   c.__render = function(){ Object.assign(store, c.renderVals()); };
   PetiteVue.createApp(store).mount('#app'); if (c.componentDidMount) c.componentDidMount(); })();
 </script>
